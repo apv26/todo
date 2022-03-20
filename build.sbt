@@ -1,4 +1,4 @@
-val Http4sVersion = "0.23.10"
+val Http4sVersion = "0.23.11"
 val CirceVersion = "0.14.1"
 val MunitVersion = "0.7.29"
 val LogbackVersion = "1.2.10"
@@ -8,8 +8,14 @@ lazy val root = (project in file("."))
   .settings(
     organization := "com.example",
     name := "todo",
-    version := "0.0.1-SNAPSHOT",
+    version := "0.0.1-SNAPSHOT"
+  )
+
+lazy val server = (project in file("server"))
+  .settings(
     scalaVersion := "2.13.8",
+    // Only necessary for SNAPSHOT releases
+    // resolvers += Resolver.sonatypeRepo("snapshots"),
     libraryDependencies ++= Seq(
       "org.http4s"      %% "http4s-ember-server" % Http4sVersion,
       "org.http4s"      %% "http4s-ember-client" % Http4sVersion,
@@ -25,3 +31,5 @@ lazy val root = (project in file("."))
     addCompilerPlugin("com.olegpy"    %% "better-monadic-for" % "0.3.1"),
     testFrameworks += new TestFramework("munit.Framework")
   )
+
+lazy val client = (project in file("client"))
