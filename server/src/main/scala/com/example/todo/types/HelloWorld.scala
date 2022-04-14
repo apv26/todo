@@ -5,6 +5,7 @@ import cats.implicits._
 import io.circe.{Encoder, Json}
 import org.http4s.EntityEncoder
 import org.http4s.circe._
+// TODO delete duplicate imports
 import com.example.db.db.connect
 
 trait HelloWorld[F[_]] {

@@ -13,13 +13,14 @@ package object db {
   def connect() = {
     val xa = Transactor.fromDriverManager[IO](
       "org.postgresql.Driver", // driver classname
-      "jdbc:postgresql://postgres/todo", // connect URL (driver-specific)
+      "jdbc:postgresql:todo", // connect URL (driver-specific)
       "postgres", // user
       "1111" // password
     )
 
     val program1 = sql"select 42".query[Int].unique
     val io = program1.transact(xa)
-    io.unsafeRunSync()
+    // TODO create handler unsafeRunSync With
+    io.handleError(e => e.printStackTrace()).unsafeRunSync()
   }
 }
