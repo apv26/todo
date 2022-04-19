@@ -4,6 +4,8 @@ val MunitVersion = "0.7.29"
 val LogbackVersion = "1.2.10"
 val MunitCatsEffectVersion = "1.0.7"
 val DoobieVersion = "1.0.0-RC1"
+val NewTypeVersion = "0.4.4"
+// val Fs2Version = "3.2.7"
 
 lazy val root = (project in file("."))
   .settings(
@@ -31,7 +33,10 @@ lazy val server = (project in file("server"))
       "org.scalameta" %% "svm-subs" % "20.2.0",
       "org.tpolecat" %% "doobie-core" % DoobieVersion,
       "org.tpolecat" %% "doobie-postgres" % DoobieVersion,
-      "org.tpolecat" %% "doobie-specs2" % DoobieVersion
+      "org.tpolecat" %% "doobie-specs2" % DoobieVersion,
+      "org.tpolecat" %% "doobie-hikari" % DoobieVersion,
+      "io.estatico" %% "newtype" % NewTypeVersion
+      // "co.fs2" %% "fs2-core" % Fs2Version
     ),
     addCompilerPlugin(
       "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
