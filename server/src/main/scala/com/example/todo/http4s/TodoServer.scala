@@ -14,7 +14,8 @@ object TodoServer {
   def stream[F[_]: Async]: Stream[F, Nothing] = {
     for {
       client <- Stream.resource(EmberClientBuilder.default[F].build)
-      helloWorldAlg = HelloWorld.impl[F]
+      helloWorldAlg = ServerApi.impl[F]
+      // TODO should use ember client builder?
       jokeAlg = Jokes.impl[F](client)
 
       // Combine Service Routes into an HttpApp.

@@ -49,4 +49,12 @@ package object db {
       findAllActorsQuery.to[List]
     findAllActors.transact(xa)
   }
+
+  def findAllTodosNamesProgram: IO[List[String]] = {
+    val findAllTodosQuery: doobie.Query0[String] =
+      sql"select name from todos".query[String]
+    val findAllTodos: doobie.ConnectionIO[List[String]] =
+      findAllTodosQuery.to[List]
+    findAllTodos.transact(xa)
+  }
 }

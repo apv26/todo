@@ -6,3 +6,7 @@ curl http://localhost:8081/hello/user
 - [ ] driver manager has no upper bound on the number of connections it will create
 - [ ] using the Resource type to manage the connection pool
 - [ ] ? use newHikariTransactor
+
+INSERT INTO public.todo(id, description, done) VALUES (1, 'buy the paper', true);
+INSERT INTO public.todo(id, description, done) VALUES (2, 'find sample of picture', false);
+INSERT INTO public.todo(id, description, done) VALUES (3, 'draw picture', false);
