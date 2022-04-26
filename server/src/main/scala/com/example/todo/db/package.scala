@@ -42,7 +42,7 @@ package object db {
     )
   } yield xa
 
-  def findAllActorsNamesProgram: IO[List[String]] = {
+  def findAllActorsNamesProgram(): IO[List[String]] = {
     val findAllActorsQuery: doobie.Query0[String] =
       sql"select name from actors".query[String]
     val findAllActors: doobie.ConnectionIO[List[String]] =
@@ -50,10 +50,10 @@ package object db {
     findAllActors.transact(xa)
   }
 
-  def findAllTodosNamesProgram: IO[List[String]] = {
-    val findAllTodosQuery: doobie.Query0[String] =
-      sql"select name from todos".query[String]
-    val findAllTodos: doobie.ConnectionIO[List[String]] =
+  def findAllTodosProgram(): IO[List[Todo]] = {
+    val findAllTodosQuery: doobie.Query0[Todo] =
+      sql"select * from todos".query[Todo]
+    val findAllTodos: doobie.ConnectionIO[List[Todo]] =
       findAllTodosQuery.to[List]
     findAllTodos.transact(xa)
   }

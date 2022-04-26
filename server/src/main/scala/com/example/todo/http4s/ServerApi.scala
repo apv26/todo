@@ -1,22 +1,20 @@
 package com.example.todo
 
-import cats.Applicative
-import cats.implicits._
-// TODO delete duplicate imports
-import com.example.db.db.connect
 import com.example.todo.types._
+import com.example.db.Todo
+import com.example.db.db._
+import cats.effect.IO
 
-trait ServerApi[F[_]] {
-  def hello(n: Name): F[Greeting]
+trait ServerApi {
+  def todos(n: Name): IO[List[Todo]]
 }
 
 object ServerApi {
-  implicit def apply[F[_]](implicit ev: ServerApi[F]): ServerApi[F] = ev
+  implicit def apply(implicit ev: ServerApi): ServerApi = ev
 
-  def impl[F[_]: Applicative]: ServerApi[F] = new ServerApi[F] {
-    def hello(n: Name): F[Greeting] = {
-      connect()
-      Greeting("Hello, " + n.name).pure[F]
+  def impl: ServerApi = new ServerApi {
+    def todos(n: Name): IO[List[Todo]] = {
+      findAllTodosProgram()
     }
   }
 }
