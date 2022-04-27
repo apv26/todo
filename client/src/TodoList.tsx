@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
+import { Todo } from "./App";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const TodoList: React.FC = () => {
+export const TodoList: React.FC<{ todos: Todo[] }> = (props) => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
@@ -36,27 +37,27 @@ export const TodoList: React.FC = () => {
 
   return (
     <List className={classes.root}>
-      {[0, 1, 2, 3].map((value) => {
+      {props.todos.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
           <ListItem
-            key={value}
+            key={value.id}
             role={undefined}
             dense
             button
-            onClick={handleToggle(value)}
+            onClick={handleToggle(value.id)}
           >
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(value) !== -1}
+                checked={value.done}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ "aria-labelledby": labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+            <ListItemText id={labelId} primary={value.description} />
             <ListItemSecondaryAction>
               <IconButton edge="end" aria-label="comments">
                 <CommentIcon />

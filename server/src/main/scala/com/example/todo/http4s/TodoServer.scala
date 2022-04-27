@@ -9,6 +9,7 @@ import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.implicits._
 import org.http4s.server.middleware.Logger
 import cats.effect.IO
+import org.http4s.server.middleware.CORS
 
 object TodoServer {
 
@@ -23,10 +24,14 @@ object TodoServer {
       // Can also be done via a Router if you
       // want to extract a segments not checked
       // in the underlying routes.
-      httpApp = (
-        TodoRoutes.serverApiRoutes(serverApiAlg) <+>
-          TodoRoutes.jokeRoutes[IO](jokeAlg)
-      ).orNotFound
+      httpApp = CORS.policy.withAllowOriginAll
+        .withAllowCredentials(false)
+        .apply(
+          (
+            TodoRoutes.serverApiRoutes(serverApiAlg) <+>
+              TodoRoutes.jokeRoutes[IO](jokeAlg)
+          ).orNotFound
+        )
 
       // With Middlewares in place
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
