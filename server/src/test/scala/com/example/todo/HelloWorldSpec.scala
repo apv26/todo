@@ -21,7 +21,7 @@ class HelloWorldSpec extends CatsEffectSuite {
 
   private[this] val retHelloWorld: IO[Response[IO]] = {
     val getHW = Request[IO](Method.GET, uri"/hello/world")
-    val helloWorld = ServerApi.impl[IO]
+    val helloWorld = ServerApi.impl
     TodoRoutes.serverApiRoutes(helloWorld).orNotFound(getHW)
   }
 }

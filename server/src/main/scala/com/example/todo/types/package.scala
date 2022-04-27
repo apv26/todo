@@ -29,7 +29,7 @@ object Greeting {
   * internal data structures, however this shows how you can create encoders for
   * your data.
   */
-object Todo {
+object TodoEnc {
   implicit val todoDecoder: Decoder[Todo] = deriveDecoder[Todo]
   implicit def todoEntityDecoder[F[_]: Concurrent]: EntityDecoder[F, Todo] =
     jsonOf

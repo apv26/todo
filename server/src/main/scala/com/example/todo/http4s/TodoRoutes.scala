@@ -5,7 +5,7 @@ import cats.implicits._
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import com.example.todo.types._
-import com.example.todo.types.Todo._
+import com.example.todo.types.TodoEnc._
 import cats.effect.IO
 
 object TodoRoutes {
