@@ -2,19 +2,19 @@ package com.example.todo
 
 import com.example.todo.types._
 import com.example.db.Todo
-import com.example.db.db._
+import com.example.db.queries._
 import cats.effect.IO
 
-trait ServerApi {
+trait TodoApi {
   def todos(n: Name): IO[List[Todo]]
 }
 
-object ServerApi {
-  implicit def apply(implicit ev: ServerApi): ServerApi = ev
+object TodoApi {
+  implicit def apply(implicit ev: TodoApi): TodoApi = ev
 
-  def impl: ServerApi = new ServerApi {
+  def impl: TodoApi = new TodoApi {
     def todos(n: Name): IO[List[Todo]] = {
-      findAllTodosProgram()
+      findAllTodos()
     }
   }
 }

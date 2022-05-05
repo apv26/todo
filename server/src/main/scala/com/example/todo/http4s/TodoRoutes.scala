@@ -21,12 +21,12 @@ object TodoRoutes {
     }
   }
 
-  def serverApiRoutes(H: ServerApi): HttpRoutes[IO] = {
+  def serverApiRoutes(api: TodoApi): HttpRoutes[IO] = {
     val dsl = new Http4sDsl[IO] {}
     import dsl._
     HttpRoutes.of[IO] { case GET -> Root / "todos" / name =>
       for {
-        list <- H.todos(Name(name))
+        list <- api.todos(Name(name))
         resp <- Ok(list)
       } yield resp
     }

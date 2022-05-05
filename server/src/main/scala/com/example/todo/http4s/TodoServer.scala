@@ -16,8 +16,7 @@ object TodoServer {
   def stream: Stream[IO, Nothing] = {
     for {
       client <- Stream.resource(EmberClientBuilder.default[IO].build)
-      serverApiAlg = ServerApi.impl
-      // TODO should use ember client builder?
+      todoApi = TodoApi.impl
       jokeAlg = Jokes.impl[IO](client)
 
       // Combine Service Routes into an HttpApp.
@@ -28,7 +27,7 @@ object TodoServer {
         .withAllowCredentials(false)
         .apply(
           (
-            TodoRoutes.serverApiRoutes(serverApiAlg) <+>
+            TodoRoutes.serverApiRoutes(todoApi) <+>
               TodoRoutes.jokeRoutes[IO](jokeAlg)
           ).orNotFound
         )
