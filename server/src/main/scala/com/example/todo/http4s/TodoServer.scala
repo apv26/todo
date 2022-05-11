@@ -27,7 +27,7 @@ object TodoServer {
         .withAllowCredentials(false)
         .apply(
           (
-            TodoRoutes.serverApiRoutes(todoApi) <+>
+            TodoRoutes.todoRoutes(todoApi) <+>
               TodoRoutes.jokeRoutes[IO](jokeAlg)
           ).orNotFound
         )

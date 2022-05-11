@@ -4,7 +4,6 @@ import cats.effect.Sync
 import cats.implicits._
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
-import com.example.todo.types._
 import com.example.todo.types.TodoEnc._
 import cats.effect.IO
 
@@ -21,12 +20,12 @@ object TodoRoutes {
     }
   }
 
-  def serverApiRoutes(api: TodoApi): HttpRoutes[IO] = {
+  def todoRoutes(api: TodoApi): HttpRoutes[IO] = {
     val dsl = new Http4sDsl[IO] {}
     import dsl._
-    HttpRoutes.of[IO] { case GET -> Root / "todos" / name =>
+    HttpRoutes.of[IO] { case GET -> Root / "todos" =>
       for {
-        list <- api.todos(Name(name))
+        list <- api.todos()
         resp <- Ok(list)
       } yield resp
     }

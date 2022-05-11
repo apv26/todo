@@ -38,7 +38,6 @@ object TodoEnc {
   implicit def todoEntityEncoder[F[_]]: EntityEncoder[F, Todo] =
     jsonEncoderOf
 
-  implicit val todoLEncoder: Encoder[List[Todo]] = deriveEncoder[List[Todo]]
-  implicit def todoLEntityEncoder[F[_]]: EntityEncoder[F, List[Todo]] =
+  implicit def todoListEntityEncoder[F[_]]: EntityEncoder[F, List[Todo]] =
     jsonEncoderOf
 }

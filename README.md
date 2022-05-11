@@ -1,5 +1,6 @@
 Запуск сервера
-server/reStart
+server / reStart
+`server / Test / compile`
 
 Тестирование рест в консоли:
 curl http://localhost:8081/todos/user
@@ -10,12 +11,11 @@ Pg super user - 1111
 
 TODO
 
-- [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке
+- [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
 - [ ] use flyway migrations
 - [ ] use scalaCheckStyle
 - [ ] scala test for queries
 - [ ] add swagger
-- [ ] приходит не понятный Json "::": Array(3) [ {…}, {…}, {…} ]
 
 NEXT
 
@@ -24,9 +24,8 @@ NEXT
       слой ConnectionIO - val findAllTodos: doobie.ConnectionIO[List[Todo]]
       слой Todo - IO[List[Todo]]
 - [ ] add pureconfig, данные для входа
-- [ ] из todos(n: Name) удалить n, delete jokeRoutes, rename serverApiRoutes
+- [ x] из todos(n: Name) удалить n, delete jokeRoutes, rename serverApiRoutes
 - [ ] should use ember client builder?
-- [ ] переименовать и проверить HelloWorldSpec
 - [ ] кнопки добавить, удалить, не/выполнено
 - [ ] когда , для чего использовать Stream[ConnectionIO, A]
 - [ ] интерпретатор от ConnectionOp ~> M - Стратегия транзакций, определяющая стратегию настройки, обработки ошибок и очистки, связанную с каждым взаимодействием с базой данных
@@ -40,6 +39,13 @@ NEXT
       https://mui.com/material-ui/getting-started/example-projects/#free
 * [ ] авторизация, аутентификация, keycloak, google
 
+NEXT2
+
+- [ ] when use tapir
+- [ ] подключить organizeImports
+- [ ] вывести сообщение при ошибке начитки данных (react-query) `if (error) return <div>An error has occurred: {error}</div>;`
+- [ ] custom fetch with json decoding ? (react-query)
+
 INFO
 
 - Чтобы создать любой из предоставленных Transactor[M] (кроме DriverManagerTransactor), вам нужно ContextShift[M], который предоставляет пул с привязкой к ЦП для неблокирующих операций
@@ -49,5 +55,7 @@ INFO
 
 DONE
 
+- [x] приходит не понятный Json "::": Array(3) [ {…}, {…}, {…} ]
+- [x] переименовать и проверить HelloWorldSpec
 - [x] using the Resource type to manage the connection pool
 - [x] ? use newHikariTransactor
