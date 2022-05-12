@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
   )
 
 lazy val server = (project in file("server"))
+  .enablePlugins(FlywayPlugin)
   .settings(
     scalaVersion := "2.13.8",
 
@@ -42,7 +43,17 @@ lazy val server = (project in file("server"))
       "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
     ),
     addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
-    testFrameworks += new TestFramework("munit.Framework")
+    testFrameworks += new TestFramework("munit.Framework"),
+    flywayUrl := "jdbc:postgresql:todo",
+    flywayUser := "postgres",
+    flywayPassword := "1111",
+    flywayLocations += "db.migration",
+    flywayBaselineOnMigrate := true,
+    Test / flywayUrl := "jdbc:postgresql:todo-test",
+    Test / flywayUser := "postgres",
+    Test / flywayPassword := "1111",
+    Test / flywayLocations += "db.migration",
+    Test / flywayBaselineOnMigrate := true
   )
 
 lazy val client = (project in file("client"))

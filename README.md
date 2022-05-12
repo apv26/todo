@@ -1,9 +1,28 @@
 Запуск сервера
-server / reStart
-`server / Test / compile`
 
-Тестирование рест в консоли:
-curl http://localhost:8081/todos/user
+```
+> server / reStart
+```
+
+```
+> server / Test / compile
+```
+
+Миграция БД
+
+```
+> server/flywayInfo
+```
+
+```
+> server/flywayMigrate
+```
+
+Тестирование рест в консоли
+
+```
+> curl http://localhost:8081/todos/user
+```
 
 `git log --pretty=format:"%h - %an, %ar : %s" --since=1.week --graph`
 
@@ -45,6 +64,32 @@ NEXT2
 - [ ] подключить organizeImports
 - [ ] вывести сообщение при ошибке начитки данных (react-query) `if (error) return <div>An error has occurred: {error}</div>;`
 - [ ] custom fetch with json decoding ? (react-query)
+- [ ] [error] (server / flywayMigrate) org.flywaydb.core.api.FlywayException: Found non-empty schema(s) "public" without schema history table! Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+- [ ] fix [warn] Unable to resolve location filesystem:src/main/resources/db/migration
+- [ ] flyway если нет БД создать
+
+- [ ] fix version
+      flywayBaselineVersion := "5"
+
+- [ ] fix-warning
+
+> In the project doing the aggregating, the root project in this case, you can control aggregation per-task. For example, to avoid aggregating the update task:
+
+```
+    lazy val root = (project in file(".")).
+      aggregate(util, core).
+      settings(
+        aggregate in update := false
+      )
+```
+
+> In your case, set aggregate in flywayMigrate := false instead. To do this just once,
+
+```
+sbt "; set aggregate in (ThisBuild, flywayMigrate) := false; root/flywayMigrate"
+```
+
+https://stackoverflow.com/questions/39623651/flyway-migration-multi-project-run-sbt-command-for-main-module-but-not-submo
 
 INFO
 
