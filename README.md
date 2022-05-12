@@ -96,6 +96,8 @@ https://stackoverflow.com/questions/39623651/flyway-migration-multi-project-run-
       Note that query arguments are never used, so they can be any values that typecheck.
       как не писать аргументы совсем
 - [ ] проверить объявления пакетов и package object
+- [ ] client import plugin (sorting)
+- [ ] set git hooks equals CI
 
 INFO
 
