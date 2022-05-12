@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.http4s
 
 import cats.effect.IO
 import org.http4s._

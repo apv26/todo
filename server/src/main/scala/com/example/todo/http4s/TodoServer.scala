@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.http4s
 
 import cats.effect.{Async, Resource}
 import cats.syntax.all._
@@ -10,6 +10,7 @@ import org.http4s.implicits._
 import org.http4s.server.middleware.Logger
 import cats.effect.IO
 import org.http4s.server.middleware.CORS
+import com.example.todo.Jokes
 
 object TodoServer {
 

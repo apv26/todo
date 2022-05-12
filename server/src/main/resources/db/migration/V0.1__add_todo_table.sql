@@ -4,9 +4,9 @@
 
 CREATE TABLE IF NOT EXISTS public.todo
 (
-    id integer,
-    description text COLLATE pg_catalog."default",
-    done boolean
+    id integer NOT NULL,
+    description text NOT NULL,
+    done boolean NOT NULL
 )
 
 TABLESPACE pg_default;

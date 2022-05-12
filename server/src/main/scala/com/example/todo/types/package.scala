@@ -3,7 +3,7 @@ package com.example.todo.types
 import io.circe.{Json}
 import org.http4s.{EntityEncoder, EntityDecoder}
 import org.http4s.circe._
-import com.example.db.Todo
+import com.example.todo.db.Todo
 import io.circe.{Encoder, Decoder}
 import io.circe.generic.semiauto._
 import cats.effect.Concurrent

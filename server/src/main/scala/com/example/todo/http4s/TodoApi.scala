@@ -1,7 +1,7 @@
-package com.example.todo
+package com.example.todo.http4s
 
-import com.example.db.Todo
-import com.example.db.queries._
+import com.example.todo.db.Todo
+import com.example.todo.db.queries._
 import cats.effect.IO
 
 trait TodoApi {

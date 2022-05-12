@@ -91,6 +91,12 @@ sbt "; set aggregate in (ThisBuild, flywayMigrate) := false; root/flywayMigrate"
 
 https://stackoverflow.com/questions/39623651/flyway-migration-multi-project-run-sbt-command-for-main-module-but-not-submo
 
+- [ ] https://blog.rockthejvm.com/doobie/#8-putting-pieces-together-a-tagless-final-approach
+- [ ] check(
+      Note that query arguments are never used, so they can be any values that typecheck.
+      как не писать аргументы совсем
+- [ ] проверить объявления пакетов и package object
+
 INFO
 
 - Чтобы создать любой из предоставленных Transactor[M] (кроме DriverManagerTransactor), вам нужно ContextShift[M], который предоставляет пул с привязкой к ЦП для неблокирующих операций

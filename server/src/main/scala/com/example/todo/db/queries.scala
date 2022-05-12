@@ -1,15 +1,15 @@
-package com.example.db
+package com.example.todo.db
 
 import cats.effect._
 import doobie.implicits._
 
 object queries {
 
+  val findAllTodosQuery: doobie.Query0[Todo] =
+    sql"select * from todo".query[Todo]
+
   def findAllTodos(): IO[List[Todo]] = db.transactor.use { xa =>
     {
-      val findAllTodosQuery: doobie.Query0[Todo] =
-        sql"select * from todo".query[Todo]
-
       val findAllTodos: doobie.ConnectionIO[List[Todo]] =
         findAllTodosQuery.to[List]
 

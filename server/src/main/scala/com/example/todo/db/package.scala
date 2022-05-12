@@ -1,4 +1,4 @@
-package com.example.db
+package com.example.todo.db
 
 import cats.effect._
 import doobie._

@@ -1,4 +1,4 @@
-package com.example.todo
+package com.example.todo.http4s
 
 import cats.effect.Sync
 import cats.implicits._
@@ -6,6 +6,7 @@ import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import com.example.todo.types.TodoEnc._
 import cats.effect.IO
+import com.example.todo.Jokes
 
 object TodoRoutes {
 
