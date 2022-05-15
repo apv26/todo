@@ -24,6 +24,13 @@
 > curl http://localhost:8081/todos/user
 ```
 
+Adding your SSH key to the ssh-agent
+
+```
+> eval "$(ssh-agent -s)"
+> ssh-add /c/Programming/id_rsa
+```
+
 `git log --pretty=format:"%h - %an, %ar : %s" --since=1.week --graph`
 
 Pg super user - 1111
@@ -31,9 +38,9 @@ Pg super user - 1111
 TODO
 
 - [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
-- [ ] use flyway migrations
+- [x] use flyway migrations
 - [ ] use scalaCheckStyle
-- [ ] scala test for queries
+- [x] scala test for queries
 - [ ] add swagger
 
 NEXT
