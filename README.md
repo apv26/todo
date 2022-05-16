@@ -35,6 +35,18 @@ Adding your SSH key to the ssh-agent
 
 Pg super user - 1111
 
+run the container
+
+```
+> docker run -d -p 80:80 docker/getting-started
+```
+
+docker build command
+
+```
+> docker build -t getting-started
+```
+
 TODO
 
 - [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
@@ -52,7 +64,7 @@ NEXT
 - [ ] add pureconfig, данные для входа
 - [ x] из todos(n: Name) удалить n, delete jokeRoutes, rename serverApiRoutes
 - [ ] should use ember client builder?
-- [ ] кнопки добавить, удалить, не/выполнено
+- [ ] кнопки добавить, удалить, не/выполнено; example of todo https://docs.docker.com/get-started/02_our_app/
 - [ ] когда , для чего использовать Stream[ConnectionIO, A]
 - [ ] интерпретатор от ConnectionOp ~> M - Стратегия транзакций, определяющая стратегию настройки, обработки ошибок и очистки, связанную с каждым взаимодействием с базой данных
       For example, to create a transactor that is the same as xa but always rolls back (for testing perhaps) you can say:
@@ -112,6 +124,10 @@ INFO
 - Поскольку эти пулы должны быть закрыты, чтобы выйти без ошибок, обычно используется Resource для управления их жизненным циклом
 - JDBC driver manager will try to load the driver for each connection - which can be pretty expensive
 - driver manager has no upper bound on the number of connections it will create
+
+_docker-installation_
+Docker for Windows require Windows 10. If you use an older version of Windows like Windows 8.1, you should use Docker Toolbox instead. It's a legacy solution for older windows and mac.
+For that, you will need to install VirtualBox and you need to keep in mind that docker will run inside a VM. If you start and expose a container port, you can't connect on it using localhost but, instead, the VM IP.
 
 DONE
 
