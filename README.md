@@ -50,6 +50,7 @@ docker build command
 TODO
 
 - [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
+      https://docs.docker.com/ci-cd/best-practices/
 - [x] use flyway migrations
 - [ ] use scalaCheckStyle
 - [x] scala test for queries
