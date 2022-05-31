@@ -8,7 +8,7 @@ class queriesTestSpec extends Specification with doobie.specs2.IOChecker {
 
   val transactor = Transactor.fromDriverManager[IO](
     "org.postgresql.Driver",
-    "jdbc:postgresql:todo-test",
+    "jdbc:postgresql://app-db:5432/todo-test",
     "postgres",
     "1111"
   )
