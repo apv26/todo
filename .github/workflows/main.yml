@@ -51,7 +51,7 @@ jobs:
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
-      app-db:
+      postgres:
         # Docker Hub image
         image: postgres
         # Provide the password for postgres
@@ -71,6 +71,11 @@ jobs:
 
       - name: Run tests
         run: sbt server/test
+        env:
+          # The hostname used to communicate with the PostgreSQL service container
+          POSTGRES_HOST: postgres
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
