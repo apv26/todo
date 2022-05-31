@@ -59,8 +59,6 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 1111
           POSTGRES_DB: todo-test
-        expose:
-          - 5432
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
