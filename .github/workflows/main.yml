@@ -42,3 +42,14 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/todo:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/todo:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/todo:buildcache,mode=max
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: sbt server/test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
