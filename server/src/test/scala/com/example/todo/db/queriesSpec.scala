@@ -6,9 +6,11 @@ import doobie.util.transactor._
 
 class queriesTestSpec extends Specification with doobie.specs2.IOChecker {
 
+  val host = System.getenv("POSTGRES_HOST");
+  val port = System.getenv("POSTGRES_PORT");
   val transactor = Transactor.fromDriverManager[IO](
     "org.postgresql.Driver",
-    "jdbc:postgresql://postgres:5432/todo-test",
+    s"jdbc:postgresql://${host}:${port}/todo-test",
     "postgres",
     "1111"
   )
