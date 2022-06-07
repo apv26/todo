@@ -66,6 +66,8 @@ TODO
 - [x] use scalaCheckStyle
 - [x] scala test for queries
 - [ ] add swagger
+      https://tapir.softwaremill.com/en/v0.12.23/openapi.html
+      https://tapir.softwaremill.com/en/v0.12.23/server/http4s.html
 
 PART
 

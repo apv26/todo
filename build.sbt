@@ -6,6 +6,7 @@ val MunitCatsEffectVersion = "1.0.7"
 val DoobieVersion = "1.0.0-RC1"
 val NewTypeVersion = "0.4.4"
 // val Fs2Version = "3.2.7"
+val TapirVersion = "0.20.2"
 
 lazy val root = (project in file("."))
   .settings(
@@ -36,8 +37,13 @@ lazy val server = (project in file("server"))
       "org.tpolecat" %% "doobie-postgres" % DoobieVersion,
       "org.tpolecat" %% "doobie-specs2" % DoobieVersion,
       "org.tpolecat" %% "doobie-hikari" % DoobieVersion,
-      "io.estatico" %% "newtype" % NewTypeVersion
+      "io.estatico" %% "newtype" % NewTypeVersion,
       // "co.fs2" %% "fs2-core" % Fs2Version
+      "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % TapirVersion
     ),
     addCompilerPlugin(
       "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
