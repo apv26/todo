@@ -15,5 +15,5 @@ class queriesTestSpec extends Specification with doobie.specs2.IOChecker {
     "1111"
   )
 
-  check(queries.findAllTodosQuery)
+  check(Queries.findAllTodosQuery)
 }

@@ -1,3 +1,13 @@
+Проверка кода
+
+```
+> server/test:scalastyle
+```
+
+```
+> server/scalastyle
+```
+
 Запуск сервера
 
 ```
@@ -49,15 +59,15 @@ docker build command
 
 TODO
 
-- [ ] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
+- [x] тестирование docker image postgres; интеграционный тест чтобы не аклиенте отображались нужные записи в списке (поправить тесты)
       https://docs.docker.com/ci-cd/best-practices/
       https://docs.docker.com/ci-cd/github-actions/
 - [x] use flyway migrations
-- [ ] use scalaCheckStyle
+- [x] use scalaCheckStyle
 - [x] scala test for queries
 - [ ] add swagger
 
-NEXT
+PART
 
 - [ ] val transactor создавать в db object?
 - [ ] сделать слой запросов val findAllTodosQuery: doobie.Query0[Todo]
@@ -79,7 +89,7 @@ NEXT
       https://mui.com/material-ui/getting-started/example-projects/#free
 * [ ] авторизация, аутентификация, keycloak, google
 
-NEXT2
+PART2
 
 - [ ] when use tapir
 - [ ] подключить organizeImports
@@ -120,6 +130,16 @@ https://stackoverflow.com/questions/39623651/flyway-migration-multi-project-run-
 - [ ] client import plugin (sorting)
 - [ ] set git hooks equals CI
 
+PART3
+
+- [ ] docker ci test db queries https://docs.github.com/en/actions/using-containerized-services/creating-postgresql-service-containers
+- [ ] docker compose https://github.com/peter-evans/docker-compose-actions-workflow
+- [ ] docker scala test
+- [ ] docker yarn test
+- [ ] build server with client
+- [ ] docker - build server with client
+- [ ] ? plugin sbt-github-actions https://github.com/djspiewak/sbt-github-actions
+
 INFO
 
 - Чтобы создать любой из предоставленных Transactor[M] (кроме DriverManagerTransactor), вам нужно ContextShift[M], который предоставляет пул с привязкой к ЦП для неблокирующих операций
@@ -130,6 +150,18 @@ INFO
 _docker-installation_
 Docker for Windows require Windows 10. If you use an older version of Windows like Windows 8.1, you should use Docker Toolbox instead. It's a legacy solution for older windows and mac.
 For that, you will need to install VirtualBox and you need to keep in mind that docker will run inside a VM. If you start and expose a container port, you can't connect on it using localhost but, instead, the VM IP.
+
+https://tapir.softwaremill.com/en/latest/
+https://tapir.softwaremill.com/en/latest/server/http4s.html
+https://tapir.softwaremill.com/en/latest/endpoint/schemas.html
+
+PFP-SCALA
+
+- Smart constructors are functions such as mkUsername and mkEmail, which take a raw value and return an optional validated one.
+
+- `sealed abstract class Username(value: String)`
+
+- we can combine forces and use Refined and Newtype together! `@newtype case class Brand(value: NonEmptyString)`
 
 DONE
 
