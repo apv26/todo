@@ -7,12 +7,12 @@ import org.http4s.dsl.Http4sDsl
 import com.example.todo.types.TodoEnc._
 import cats.effect.IO
 import com.example.todo.Jokes
-import sttp.tapir.server.http4s._
-import sttp.tapir._
-import sttp.tapir.server.http4s._
-import cats.effect.IO
-import org.http4s.HttpRoutes
-import cats.effect.ContextShift
+// import sttp.tapir.server.http4s._
+// import sttp.tapir._
+// import sttp.tapir.server.http4s._
+// import cats.effect.IO
+// import org.http4s.HttpRoutes
+// import cats.effect.ContextShift
 
 object TodoRoutes {
 

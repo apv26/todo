@@ -1,3 +1,6 @@
+Temporary use in "repositories" to download dependency?
+maven-central: https://repo1.maven.org/maven2
+
 Проверка кода
 
 ```

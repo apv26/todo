@@ -7,6 +7,7 @@ val DoobieVersion = "1.0.0-RC1"
 val NewTypeVersion = "0.4.4"
 // val Fs2Version = "3.2.7"
 val TapirVersion = "0.20.2"
+val CatsEffectVersion = "3.3.12"
 
 lazy val root = (project in file("."))
   .settings(
@@ -24,6 +25,7 @@ lazy val server = (project in file("server"))
     // resolvers += Resolver.sonatypeRepo("snapshots"),
 
     libraryDependencies ++= Seq(
+      "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-ember-client" % Http4sVersion,
       "org.http4s" %% "http4s-circe" % Http4sVersion,
@@ -39,11 +41,13 @@ lazy val server = (project in file("server"))
       "org.tpolecat" %% "doobie-hikari" % DoobieVersion,
       "io.estatico" %% "newtype" % NewTypeVersion,
       // "co.fs2" %% "fs2-core" % Fs2Version
+      "com.softwaremill.sttp.client3" %% "core" % "3.6.2",
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % TapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % TapirVersion,
-      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % TapirVersion,
-      "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % TapirVersion,
-      "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % TapirVersion
+      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % "0.19.0-M4",
+      // "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % TapirVersion,
+      "org.typelevel" %% "cats-effect" % CatsEffectVersion
     ),
     addCompilerPlugin(
       "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
