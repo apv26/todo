@@ -5,6 +5,7 @@ import cats.syntax.all._
 import io.circe.generic.auto._
 import org.http4s.HttpRoutes
 import org.http4s.blaze.server.BlazeServerBuilder
+import org.http4s.server.middleware.CORS
 import org.http4s.server.Router
 import sttp.tapir._
 import sttp.tapir.generic.auto._
@@ -14,16 +15,16 @@ import sttp.tapir.swagger.bundle.SwaggerInterpreter
 
 import java.util.concurrent.atomic.AtomicReference
 import scala.concurrent.ExecutionContext
+import com.example.todo.db.Todo
 
 object MultipleEndpointsDocumentationHttp4sServer extends IOApp {
   // endpoint descriptions
   case class Author(name: String)
   case class Book(title: String, year: Int, author: Author)
 
-  val booksListing: PublicEndpoint[Unit, Unit, Vector[Book], Any] = endpoint.get
-    .in("books")
-    .in("list" / "all")
-    .out(jsonBody[Vector[Book]])
+  val booksListing: PublicEndpoint[Unit, Unit, List[Todo], Any] = endpoint.get
+    .in("todos")
+    .out(jsonBody[List[Todo]])
 
   val addBook: PublicEndpoint[Book, Unit, Unit, Any] = endpoint.post
     .in("books")
@@ -55,7 +56,7 @@ object MultipleEndpointsDocumentationHttp4sServer extends IOApp {
 
   val booksListingRoutes: HttpRoutes[IO] =
     Http4sServerInterpreter[IO]().toRoutes(
-      booksListing.serverLogicSuccess(_ => IO(books.get()))
+      booksListing.serverLogicSuccess(_ => TodoApi.impl.todos())
     )
   val addBookRoutes: HttpRoutes[IO] =
     Http4sServerInterpreter[IO]().toRoutes(
@@ -82,7 +83,11 @@ object MultipleEndpointsDocumentationHttp4sServer extends IOApp {
     BlazeServerBuilder[IO]
       .withExecutionContext(ec)
       .bindHttp(8081, "localhost")
-      .withHttpApp(Router("/" -> (routes)).orNotFound)
+      .withHttpApp(
+        CORS.policy.withAllowOriginAll
+          .withAllowCredentials(false)
+          .apply(Router("/" -> (routes)).orNotFound)
+      )
       .serve
       .compile
       .drain
