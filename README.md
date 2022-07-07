@@ -1,3 +1,9 @@
+Открытие tapir-документации API
+
+```
+http://localhost:8081/docs/#/
+```
+
 Temporary use in "repositories" to download dependency?
 maven-central: https://repo1.maven.org/maven2
 
@@ -71,6 +77,9 @@ TODO
 - [ ] add swagger
       https://tapir.softwaremill.com/en/v0.12.23/openapi.html
       https://tapir.softwaremill.com/en/v0.12.23/server/http4s.html
+      https://tapir.softwaremill.com/en/v0.12.23/examples.html
+      https://github.com/softwaremill/tapir/blob/master/examples/src/main/scala/sttp/tapir/examples/HelloWorldHttp4sServer.scala
+      https://github.com/softwaremill/tapir/blob/master/examples/src/main/scala/sttp/tapir/examples/openapi/MultipleEndpointsDocumentationHttp4sServer.scala#L79
 
 PART
 

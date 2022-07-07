@@ -5,7 +5,7 @@ import cats.syntax.all._
 import org.http4s.HttpRoutes
 import org.http4s.server.Router
 import org.http4s.blaze.server.BlazeServerBuilder
-import sttp.client3._
+// import sttp.client3._
 import sttp.tapir._
 import sttp.tapir.server.http4s.Http4sServerInterpreter
 
@@ -30,21 +30,24 @@ object HelloWorldHttp4sServer extends IOApp {
     // starting the server
     BlazeServerBuilder[IO]
       .withExecutionContext(ec)
-      .bindHttp(8080, "localhost")
+      .bindHttp(8081, "localhost")
       .withHttpApp(Router("/" -> helloWorldRoutes).orNotFound)
-      .resource
-      .use { _ =>
-        IO {
-          val backend: SttpBackend[Identity, Any] = HttpURLConnectionBackend()
-          val result: String = basicRequest
-            .response(asStringAlways)
-            .get(uri"http://localhost:8080/hello?name=Frodo")
-            .send(backend)
-            .body
-          println("Got result: " + result)
-          assert(result == "Hello, Frodo!")
-        }
-      }
+      .serve
+      .compile
+      .drain
+      // .resource
+      // .use { _ =>
+      //   IO {
+      //     val backend: SttpBackend[Identity, Any] = HttpURLConnectionBackend()
+      //     val result: String = basicRequest
+      //       .response(asStringAlways)
+      //       .get(uri"http://localhost:8080/hello?name=Frodo")
+      //       .send(backend)
+      //       .body
+      //     println("Got result: " + result)
+      //     assert(result == "Hello, Frodo!")
+      //   }
+      // }
       .as(ExitCode.Success)
   }
 }

@@ -47,6 +47,8 @@ lazy val server = (project in file("server"))
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % "0.19.0-M4",
       // "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % TapirVersion,
       "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % TapirVersion,
+      "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % TapirVersion,
       "org.typelevel" %% "cats-effect" % CatsEffectVersion
     ),
     addCompilerPlugin(
