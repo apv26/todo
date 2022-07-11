@@ -6,23 +6,17 @@ import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import com.example.todo.types.TodoEnc._
 import cats.effect.IO
-import com.example.todo.Jokes
-// import sttp.tapir.server.http4s._
-// import sttp.tapir._
-// import sttp.tapir.server.http4s._
-// import cats.effect.IO
-// import org.http4s.HttpRoutes
-// import cats.effect.ContextShift
+import com.example.todo.Tests
 
 object TodoRoutes {
 
-  def jokeRoutes[F[_]: Sync](J: Jokes[F]): HttpRoutes[F] = {
+  def testRoutes[F[_]: Sync](T: Tests[F]): HttpRoutes[F] = {
     val dsl = new Http4sDsl[F] {}
     import dsl._
-    HttpRoutes.of[F] { case GET -> Root / "joke" =>
+    HttpRoutes.of[F] { case GET -> Root / "test" =>
       for {
-        joke <- J.get
-        resp <- Ok(joke)
+        test <- T.get
+        resp <- Ok(test)
       } yield resp
     }
   }

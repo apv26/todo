@@ -10,7 +10,7 @@ import org.http4s.implicits._
 import org.http4s.server.middleware.Logger
 import cats.effect.IO
 import org.http4s.server.middleware.CORS
-import com.example.todo.Jokes
+import com.example.todo.Tests
 
 object TodoServer {
 
@@ -18,7 +18,7 @@ object TodoServer {
     for {
       client <- Stream.resource(EmberClientBuilder.default[IO].build)
       todoApi = TodoApi.impl
-      jokeAlg = Jokes.impl[IO](client)
+      testAlg = Tests.impl[IO](client)
 
       // Combine Service Routes into an HttpApp.
       // Can also be done via a Router if you
@@ -29,7 +29,7 @@ object TodoServer {
         .apply(
           (
             TodoRoutes.todoRoutes(todoApi) <+>
-              TodoRoutes.jokeRoutes[IO](jokeAlg)
+              TodoRoutes.testRoutes[IO](testAlg)
           ).orNotFound
         )
 
